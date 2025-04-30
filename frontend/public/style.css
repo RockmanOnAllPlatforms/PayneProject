@@ -63,7 +63,7 @@ p {
 }
 
 input[type="text"] {
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   padding: 0.8rem;
   margin: 1rem 0;
@@ -71,7 +71,41 @@ input[type="text"] {
   border-radius: 4px;
   background-color: #2d2d2d;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+@media screen and (max-width: 768px) {
+  div:not(.topnav) {
+    padding: 4rem 1rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .topnav a {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #output {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
 }
 
 input[type="text"]:focus {
