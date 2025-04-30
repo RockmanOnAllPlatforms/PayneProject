@@ -161,3 +161,130 @@ button:hover {
 .crypto-section button {
   margin: 0.5rem;
 }
+.watermark {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  opacity: 0.4;
+  margin-top: 3rem;
+  padding-bottom: 1.5rem;
+  user-select: none;
+}
+
+.info-section {
+  background-color: #141414;
+  border-top: 3px solid #4CAF50;
+  border-bottom: 3px solid #4CAF50;
+  padding: 5rem 2rem;
+  margin: 6rem 0;
+  width: 100%;
+}
+
+.info-section h2 {
+  color: #4CAF50;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.info-intro {
+  text-align: center;
+  color: #cccccc;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+}
+
+.info-card h3 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.info-card p {
+  color: #cccccc;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Animation: fade-in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Triggered class */
+.info-card.animate {
+  animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fancyFadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    filter: blur(2px);
+  }
+  60% {
+    filter: blur(0.5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.output-text-fade {
+  animation: fancyFadeInText 0.6s ease-out;
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.button-row button {
+  margin: 0;
+}

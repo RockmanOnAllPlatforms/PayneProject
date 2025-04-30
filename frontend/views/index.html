@@ -1,12 +1,21 @@
-
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Cryptography</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
@@ -19,35 +28,117 @@
 
     <div>
       <h1>Cryptography</h1>
-      <p>Explore different types of cryptography through these interactive demonstrations.</p>
-      
+      <p>
+        Explore different types of cryptography through these interactive
+        demonstrations.
+      </p>
+
       <section class="crypto-section">
         <h2>Hashing</h2>
-        <p>One-way function that generates a fixed-size output from any input</p>
-        <input type="text" id="input" placeholder="Enter text to hash"/>
+        <p>
+          Hasing is a One-way function that generates a fixed-size output from
+          any input. <br />
+          This example uses an algorithm called bcrypt to create a hash from the
+          input text.
+        </p>
+        <input type="text" id="input" placeholder="Enter text to hash" />
         <button id="encrypt">Generate Hash</button>
+        <div class="loader" style="display: none"></div>
         <p id="output"></p>
       </section>
 
       <section class="crypto-section">
         <h2>Symmetric-Key Cryptography</h2>
         <p>Uses the same key for encryption and decryption</p>
-        <input type="text" id="symmetric-input" placeholder="Enter text to encrypt"/>
-        <input type="text" id="symmetric-key" placeholder="Enter encryption key"/>
-        <button id="symmetric-encrypt">Encrypt</button>
-        <button id="symmetric-decrypt">Decrypt</button>
-        <p id="symmetric-output"></p>
+
+        <input
+          type="text"
+          id="symmetric-input"
+          placeholder="Enter text to encrypt"
+        />
+        <input
+          type="text"
+          id="symmetric-key"
+          placeholder="Enter encryption key"
+        />
+
+        <div class="button-row">
+          <button id="generate-symmetric-key">Generate Key</button>
+          <button id="symmetric-encrypt">Encrypt</button>
+          <button id="symmetric-decrypt">Decrypt</button>
+        </div>
+
+        <div id="symmetric-output"></div>
       </section>
 
       <section class="crypto-section">
         <h2>Asymmetric-Key Cryptography</h2>
-        <p>Uses different keys for encryption (public) and decryption (private)</p>
-        <input type="text" id="asymmetric-input" placeholder="Enter text to encrypt"/>
-        <button id="generate-keys">Generate Key Pair</button>
-        <button id="asymmetric-encrypt">Encrypt</button>
-        <button id="asymmetric-decrypt">Decrypt</button>
-        <p id="asymmetric-output"></p>
+        <p>
+          Uses different keys for encryption (public) and decryption (private)
+        </p>
+
+        <input
+          type="text"
+          id="asymmetric-input"
+          placeholder="Enter text to encrypt"
+        />
+
+        <div class="button-row">
+          <button id="generate-keys">Generate Key Pair</button>
+          <button id="asymmetric-encrypt">Encrypt</button>
+          <button id="asymmetric-decrypt">Decrypt</button>
+        </div>
+
+        <div id="asymmetric-output"></div>
       </section>
     </div>
+    <section class="info-section">
+      <h2>More About Cryptography</h2>
+      <p class="info-intro">
+        Dive deeper into the principles and applications of cryptographic
+        systems that protect data worldwide.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card block">
+          <div class="block__item">
+            <h3>History</h3>
+            <p>Placeholder text about the history of cryptography.</p>
+          </div>
+        </div>
+        <div class="info-card block">
+          <div class="block__item">
+            <h3>Applications</h3>
+            <p>Placeholder text about real-world uses.</p>
+          </div>
+        </div>
+        <div class="info-card block">
+          <div class="block__item">
+            <h3>Key Concepts</h3>
+            <p>Placeholder text about core cryptographic ideas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="watermark">© 2025 Josiah Hobbs</div>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate");
+              observer.unobserve(entry.target); // Only animate once
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".info-card").forEach((card) => {
+        observer.observe(card);
+      });
+    </script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const methods = require("../modules/encryptionMethods");
 
 function tableToString(hashes) {
   return {
@@ -42,6 +43,50 @@ router.route("/hashes").post(async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Encryption failed" });
   }
+});
+
+router.route("/symkey").post(async (req, res) => {
+  const text = req.body.text;
+  const mode = req.body.mode;
+  const key = req.body.key;
+  if (!body) {
+    res.status(400).json({ message: "No input provided" });
+    return;
+  }
+  if (!mode){
+    res.status(400).json({ message: "No mode provided"});
+    return;
+  }
+  if (!key){
+    res.status(400).json({ message: "No key provided"});
+    return;
+  }
+  if (!(methods.countBytes(key) === 32)) {
+    res.status(400).json({ message: "Invalid key length" });
+    return;
+  }
+  switch(mode){
+    case 1:
+      //encrypt
+      const encrypted = methods.encryptAES(text, key);
+      res.status(200).json({ message: encrypted })
+      break;
+    case 2:
+      //decrypt
+      const decrypted = methods.decryptAES(text,key);
+      res.status(200).json({ message: decrypted})
+      break;
+  }
+  
+  console.log(encrypted);
+  console.log(methods.decryptAES(encrypted));
+  res
+    .status(200)
+    .json({ message: "Encryption successful" });
+});
+router.route("/symkey").get(async (req, res) => {
+  const key = methods.genKey();
+  res.status(200).json({ key: key.toString("hex") });
 });
 
 module.exports = router;
