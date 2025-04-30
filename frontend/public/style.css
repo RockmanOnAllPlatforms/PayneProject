@@ -161,16 +161,3 @@ button:hover {
 .crypto-section button {
   margin: 0.5rem;
 }
-
-.watermark {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 0.5rem;
-  background-color: #2d2d2d;
-  color: #666;
-  font-size: 0.8rem;
-  z-index: 1000;
-}
