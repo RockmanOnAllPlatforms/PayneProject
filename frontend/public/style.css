@@ -44,9 +44,9 @@ body {
 }
 
 div:not(.topnav) {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 2rem 2rem;
+  padding: 4rem 1.5rem 1.5rem;
   text-align: center;
 }
 
@@ -131,9 +131,12 @@ button:hover {
 .crypto-section {
   background-color: #2d2d2d;
   border-radius: 8px;
-  padding: 2rem;
-  margin: 2rem 0;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .crypto-section h2 {
