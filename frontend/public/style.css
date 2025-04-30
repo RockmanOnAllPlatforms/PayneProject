@@ -17,7 +17,10 @@ body {
 .topnav {
   background-color: #2d2d2d;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  margin-bottom: 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .topnav a {
@@ -43,7 +46,7 @@ body {
 div:not(.topnav) {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 5rem 2rem 2rem;
   text-align: center;
 }
 
