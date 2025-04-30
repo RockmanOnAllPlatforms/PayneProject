@@ -102,7 +102,7 @@ input[type="text"] {
     font-size: 1.8rem;
   }
 
-  #output {
+  #output, #symmetric-output, #asymmetric-output {
     font-size: 0.9rem;
     padding: 0.8rem;
   }
@@ -149,6 +149,7 @@ button:hover {
   padding: 1rem;
   background-color: #222;
   border-radius: 4px;
+  word-break: break-all;
   white-space: pre-wrap;
   font-family: monospace;
   min-height: 100px;

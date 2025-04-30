@@ -13,6 +13,14 @@ function init() {
   document
     .getElementById("generate-symmetric-key")
     .addEventListener("click", genSymKey, false);
+
+  document
+    .getElementById("symmetric-encrypt")
+    .addEventListener("click", encryptSym, false);
+
+  document
+    .getElementById("symmetric-decrypt")
+    .addEventListener("click", decryptSym, false);
 }
 
 // Utility functions
@@ -77,10 +85,38 @@ async function genSymKey() {
   getId("symmetric-key").value = key.key;
 }
 
-async function encryptSym() {}
+async function encryptSym() {
+  const input = getId("symmetric-input").value;
+  const key = getId("symmetric-key").value;
+  const jsonInput = { text: input, mode: 1, key: key };
+  const symOutput = getId("symmetric-output");
+  const res = await fetch(`/api/encryption/symkey`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonInput),
+  });
+  const data = await res.json();
+  const msg = data.message;
+  symOutput.innerHTML = `<span class="output-text-fade">${msg}</span>`;
+}
 
-function decryptKey(key) {
-  
+async function decryptSym() {
+  const input = getId("symmetric-input").value;
+  const key = getId("symmetric-key").value;
+  const jsonInput = { text: input, mode: 2, key: key };
+  const symOutput = getId("symmetric-output");
+  const res = await fetch(`/api/encryption/symkey`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonInput),
+  });
+  const data = await res.json();
+  const msg = data.message;
+  symOutput.innerHTML = `<span class="output-text-fade">${msg}</span>`;
 }
 
 // Optional delay for simulating loading time

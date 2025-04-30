@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const methods = require("../modules/encryptionMethods");
+const rsaMethods = require("../modules/rsaMethods");
 
 function tableToString(hashes) {
   return {
@@ -75,16 +76,25 @@ router.route("/symkey").post(async (req, res) => {
       return;
     case 2:
       //decrypt
-      const decrypted = methods.decryptAES(text, newKey);
-      res.status(200).json({ message: decrypted });
+      try {
+        const decrypted = methods.decryptAES(text, newKey);
+        res.status(200).json({ message: decrypted });
+      } catch (error) {
+        res.status(400).json({ message: "Decryption failed" });
+      }
       return;
   }
   res.status(400).json({ message: "Unknown error!" });
 });
 router.route("/symkey").get(async (req, res) => {
   const key = methods.genKey();
-  console.log(key);
   res.status(200).json({ key: key.toString("hex") });
+});
+
+router.route("/asymkeys").get(async (req, res) => {
+  const keys = await rsaMethods.generateKeyPair();
+  console.log(keys.publicKey);
+  res.status(200).json({message: "ok"})
 });
 
 module.exports = router;

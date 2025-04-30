@@ -8,7 +8,7 @@ fs.readFile("./iv.txt", "utf8", (err, data) => {
     console.error(err);
     return;
   }
-  globalIv = data;
+  globalIv = Buffer.from(data, "hex");
 });
 
 function genKey() {
@@ -30,9 +30,7 @@ function decryptAES(ciphertext, key) {
   decrypted += decipher.final("utf8");
   return decrypted;
 }
-const byteSize = (str) => new Blob([str]).size;
 
 exports.encryptAES = encryptAES;
 exports.decryptAES = decryptAES;
 exports.genKey = genKey;
-exports.countBytes = byteSize;
