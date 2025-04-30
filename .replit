@@ -7,6 +7,7 @@ requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
 
 [nix]
 channel = "stable-24_11"
+packages = ["nailgun"]
 
 [deployment]
 run = ["node", "index.js"]
@@ -16,3 +17,8 @@ ignorePorts = false
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[[ports]]
+localPort = 5173
+externalPort = 5173
+exposeLocalhost = true

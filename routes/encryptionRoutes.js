@@ -2,8 +2,14 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
-function tableToString(table) {
-  
+function tableToString(hashes) {
+  return {
+    input_hashes: hashes.map((hash, index) => ({
+      hash: hash,
+    })),
+    total_hashes: hashes.length,
+    timestamp: new Date().toISOString(),
+  };
 }
 
 async function encryptString(input) {
@@ -21,7 +27,7 @@ router.route("/").get((req, res) => {
   res.status(200).send("Encryption Route");
 });
 
-router.route("/:msg").post(async (req, res) => {
+router.route("/hashes/:msg").post(async (req, res) => {
   if (req.params.msg === undefined) {
     res.status(400).send("No message provided");
   }
