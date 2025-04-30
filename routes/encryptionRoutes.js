@@ -2,11 +2,19 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
+function tableToString(table) {
+  
+}
+
 async function encryptString(input) {
-  const saltRounds = 10;
-  const salt = await bcrypt.genSalt(saltRounds);
-  const hash = await bcrypt.hash(input, salt);
-  return hash;
+  let hashes = [];
+  for (let i = 0; i < 5; i++) {
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(input, salt);
+    hashes.push(hash);
+  }
+  return tableToString(hashes);
 }
 
 router.route("/").get((req, res) => {
