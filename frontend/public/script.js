@@ -25,10 +25,7 @@ function makeNiceTable(data) {
   var final = "";
   const parsedData = JSON.parse(data);
   const hashes = parsedData.input_hashes;
-  hashes.forEach((hash, index) => {
-    final += JSON.stringify(hash) + "\n";
-  });
-  return final;
+  return hashes.map((hash) => hash.hash).join("\n");
 }
 
 async function encryptString() {
