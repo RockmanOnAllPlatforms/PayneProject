@@ -23,14 +23,14 @@ function getClass(className) {
 
 async function encryptString() {
   const input = getId("input").value;
-  const jsonInput = JSON.stringify(input);
-  console.log("client " + jsonInput);
+  const jsonInput = { text: input };
+  console.log("client input:", jsonInput);
   const res = await fetch(`/api/encryption/hashes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: jsonInput,
+    body: JSON.stringify(jsonInput),
   });
   const data = await res.json();
   document.getElementById("output").innerHTML = data.message;

@@ -28,9 +28,9 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/hashes").post(async (req, res) => {
-  const input = req.body;
-  console.log("server " + input);
-  if (input === undefined) {
+  const { text } = req.body;
+  console.log("server input:", text);
+  if (!text) {
     res.status(400).json({ message: "No input provided" });
     return;
   }
