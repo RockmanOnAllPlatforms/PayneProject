@@ -21,10 +21,14 @@ function getClass(className) {
   return document.getElementsByClassName(className);
 }
 
+function makeNiceTable(data) {
+  
+}
+
 async function encryptString() {
+  const output = document.getElementById("output");
   const input = getId("input").value;
   const jsonInput = { text: input };
-  console.log("client input:", jsonInput);
   const res = await fetch(`/api/encryption/hashes`, {
     method: "POST",
     headers: {
@@ -33,5 +37,9 @@ async function encryptString() {
     body: JSON.stringify(jsonInput),
   });
   const data = await res.json();
-  document.getElementById("output").innerHTML = data.message;
+  if (res.status !== 200) {
+    output.innerHTML = data.message;
+  } else {
+    output.innerHTML = makeNiceTable(data.message);
+  }
 }

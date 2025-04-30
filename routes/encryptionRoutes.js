@@ -29,16 +29,17 @@ router.route("/").get((req, res) => {
 
 router.route("/hashes").post(async (req, res) => {
   const { text } = req.body;
-  console.log("server input:", text);
+  console.log(text);
   if (!text) {
     res.status(400).json({ message: "No input provided" });
     return;
   }
   try {
-    const string = await encryptString(input);
+    const string = await encryptString(text);
     const jsonString = JSON.stringify(string);
     res.status(200).json({ message: jsonString });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Encryption failed" });
   }
 });
