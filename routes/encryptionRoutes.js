@@ -36,10 +36,10 @@ router.route("/hashes").post(async (req, res) => {
   }
   try {
     const string = await encryptString(input);
-    console.log(string);
-    res.status(200).json({ message: string });
+    const jsonString = JSON.stringify(string);
+    res.status(200).json({ message: jsonString });
   } catch (error) {
-    res.status(500).json({ error: "Encryption failed" });
+    res.status(500).json({ message: "Encryption failed" });
   }
 });
 
