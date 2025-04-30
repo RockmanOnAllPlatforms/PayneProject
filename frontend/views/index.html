@@ -1,21 +1,12 @@
+
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Cryptography</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="images/favicon-16x16.png"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
@@ -28,11 +19,35 @@
 
     <div>
       <h1>Cryptography</h1>
-      <p>This is a simple website to learn about cryptography.</p>
-      <p>Enter a string to encrypt:</p>
-      <input type="text" id="input" />
-      <button id="encrypt">Encrypt</button>
-      <p id="output"></p>
+      <p>Explore different types of cryptography through these interactive demonstrations.</p>
+      
+      <section class="crypto-section">
+        <h2>Hashing</h2>
+        <p>One-way function that generates a fixed-size output from any input</p>
+        <input type="text" id="input" placeholder="Enter text to hash"/>
+        <button id="encrypt">Generate Hash</button>
+        <p id="output"></p>
+      </section>
+
+      <section class="crypto-section">
+        <h2>Symmetric-Key Cryptography</h2>
+        <p>Uses the same key for encryption and decryption</p>
+        <input type="text" id="symmetric-input" placeholder="Enter text to encrypt"/>
+        <input type="text" id="symmetric-key" placeholder="Enter encryption key"/>
+        <button id="symmetric-encrypt">Encrypt</button>
+        <button id="symmetric-decrypt">Decrypt</button>
+        <p id="symmetric-output"></p>
+      </section>
+
+      <section class="crypto-section">
+        <h2>Asymmetric-Key Cryptography</h2>
+        <p>Uses different keys for encryption (public) and decryption (private)</p>
+        <input type="text" id="asymmetric-input" placeholder="Enter text to encrypt"/>
+        <button id="generate-keys">Generate Key Pair</button>
+        <button id="asymmetric-encrypt">Encrypt</button>
+        <button id="asymmetric-decrypt">Decrypt</button>
+        <p id="asymmetric-output"></p>
+      </section>
     </div>
   </body>
 </html>
