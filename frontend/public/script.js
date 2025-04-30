@@ -22,7 +22,13 @@ function getClass(className) {
 }
 
 function makeNiceTable(data) {
-  
+  var final = "";
+  const parsedData = JSON.parse(data);
+  const hashes = parsedData.input_hashes;
+  hashes.forEach((hash, index) => {
+    final += JSON.stringify(hash) + "\n";
+  });
+  return final;
 }
 
 async function encryptString() {
