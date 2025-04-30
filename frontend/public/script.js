@@ -30,7 +30,7 @@ async function encryptString() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: input,
+    body: jsonInput,
   });
   const data = await res.json();
   document.getElementById("output").innerHTML = data.message;
