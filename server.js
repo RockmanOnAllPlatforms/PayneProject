@@ -2,8 +2,14 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.use(express.static("frontend/public"))
+
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.sendFile(__dirname + "/frontend/views/index.html");
+});
+
+app.get("/sources", (req, res) => {
+  res.sendFile(__dirname + "/frontend/views/sources.html");
 });
 
 app.use("/api/encryption", require("./routes/encryptionRoutes"));

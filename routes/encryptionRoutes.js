@@ -27,12 +27,15 @@ router.route("/").get((req, res) => {
   res.status(200).send("Encryption Route");
 });
 
-router.route("/hashes/:msg").post(async (req, res) => {
-  if (req.params.msg === undefined) {
-    res.status(400).send("No message provided");
+router.route("/hashes").post(async (req, res) => {
+  const input = req.body;
+  console.log("server " + input);
+  if (input === undefined) {
+    res.status(400).json({ message: "No input provided" });
+    return;
   }
   try {
-    const string = await encryptString(req.params.msg);
+    const string = await encryptString(input);
     console.log(string);
     res.status(200).json({ message: string });
   } catch (error) {
