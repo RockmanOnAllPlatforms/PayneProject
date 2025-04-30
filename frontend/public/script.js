@@ -77,7 +77,9 @@ async function genSymKey() {
   getId("symmetric-key").value = key.key;
 }
 
-async function encryptSym() {
+async function encryptSym() {}
+
+function decryptKey(key) {
   
 }
 

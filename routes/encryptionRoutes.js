@@ -49,43 +49,41 @@ router.route("/symkey").post(async (req, res) => {
   const text = req.body.text;
   const mode = req.body.mode;
   const key = req.body.key;
-  if (!body) {
+  const newKey = Buffer.from(key, "hex");
+  if (!text) {
     res.status(400).json({ message: "No input provided" });
     return;
   }
-  if (!mode){
-    res.status(400).json({ message: "No mode provided"});
+  if (!mode) {
+    res.status(400).json({ message: "No mode provided" });
     return;
   }
-  if (!key){
-    res.status(400).json({ message: "No key provided"});
+  if (!key) {
+    res.status(400).json({ message: "No key provided" });
     return;
   }
-  if (!(methods.countBytes(key) === 32)) {
+  if (!(newKey.byteLength === 32)) {
+    console.log(newKey.byteLength);
     res.status(400).json({ message: "Invalid key length" });
     return;
   }
-  switch(mode){
+  switch (mode) {
     case 1:
       //encrypt
-      const encrypted = methods.encryptAES(text, key);
-      res.status(200).json({ message: encrypted })
-      break;
+      const encrypted = methods.encryptAES(text, newKey);
+      res.status(200).json({ message: encrypted });
+      return;
     case 2:
       //decrypt
-      const decrypted = methods.decryptAES(text,key);
-      res.status(200).json({ message: decrypted})
-      break;
+      const decrypted = methods.decryptAES(text, newKey);
+      res.status(200).json({ message: decrypted });
+      return;
   }
-  
-  console.log(encrypted);
-  console.log(methods.decryptAES(encrypted));
-  res
-    .status(200)
-    .json({ message: "Encryption successful" });
+  res.status(400).json({ message: "Unknown error!" });
 });
 router.route("/symkey").get(async (req, res) => {
   const key = methods.genKey();
+  console.log(key);
   res.status(200).json({ key: key.toString("hex") });
 });
 

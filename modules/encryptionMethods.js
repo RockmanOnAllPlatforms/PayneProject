@@ -1,8 +1,17 @@
+const { error } = require("console");
 const crypto = require("crypto");
+const fs = require("fs");
+var globalIv;
 
-const globalIv = crypto.randomBytes(16);
+fs.readFile("./iv.txt", "utf8", (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  globalIv = data;
+});
 
-function genKey(){
+function genKey() {
   return crypto.randomBytes(32);
 }
 
@@ -21,9 +30,9 @@ function decryptAES(ciphertext, key) {
   decrypted += decipher.final("utf8");
   return decrypted;
 }
-const byteSize = str => new Blob([str]).size;
+const byteSize = (str) => new Blob([str]).size;
 
 exports.encryptAES = encryptAES;
 exports.decryptAES = decryptAES;
 exports.genKey = genKey;
-exports.countBytes = byteSize
+exports.countBytes = byteSize;
